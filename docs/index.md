@@ -1,37 +1,74 @@
-## Welcome to GitHub Pages
+<html> 
+<head>
+    <title>Date Widget Notion</title> 
+    <style>
+      #lbl {
+        display: flex;
+        font-family: sans-serif;
+        font-size: 18pt;
+        color: #000000
+        padding: 5px;
+        border: 1px solid #ffffff;
+        justify-content: left;
+        line-height: 1.5;
+        height:85%;
+        font-weight: bold;
+        flex-direction: row;
+      }
 
-You can use the [editor on GitHub](https://github.com/xinners006/notion/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+      #container {
+        display: flex;
+        align-items: flex-start;
+      }
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+      #date{
+          font-size:12pt;
+          font-weight: bold;
+      }
 
-### Markdown
+      body{
+          background-color: #ffffff;
+      }
+    </style>
+</head>
+<body>
+    <div id="lbl"></div>
+</body>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<script>
+    var weekday = new Array(7);
+    weekday[0] = "sunday";
+    weekday[1] = "monday";
+    weekday[2] = "tuesday";
+    weekday[3] = "wednesday";
+    weekday[4] = "thursday";
+    weekday[5] = "friday";
+    weekday[6] = "saturday";
 
-```markdown
-Syntax highlighted code block
+    const monthNames = ["january", "february", "march", "april", "may", "june",
+      "july", "august", "september", "october", "november", "december"
+    ];
 
-# Header 1
-## Header 2
-### Header 3
+    
+    var today = new Date();
+    var hrs = today.getHours();
+    var dayOfWeek = weekday[today.getDay()];
+    var date = `${dayOfWeek}, ${monthNames[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
 
-- Bulleted
-- List
+    var greet;
 
-1. Numbered
-2. List
+    if (hrs < 12)
+        greet = 'good morning, xin.  ';
+    else if (hrs >= 12 && hrs <= 17)
+        greet = 'good afternoon, xin;
+    else if (hrs >= 17 && hrs <= 24)
+        greet = 'good evening,  xin ';
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/xinners006/notion/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+    document.getElementById('lbl').innerHTML = `
+        <div class="container">
+          <div id="date"> ${date}</div>
+          <div class="greeting">${greet}</div>
+        <div/>
+    `;
+</script> 
+</html>
